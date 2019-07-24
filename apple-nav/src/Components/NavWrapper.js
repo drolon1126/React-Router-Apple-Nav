@@ -9,12 +9,12 @@ export default function NavWrapper(props) {
   const subData = props.data;
   return (
     <div>
-      <ul style={{height:'44px', margin:'0',backgroundColor:'#313131'}}>
+      <ul style={{height:'44px', margin:'0',backgroundColor:'#313131', display:'flex', justifyContent:'center', alignContent:'center'}}>
         {props.data.map((nav, index) => {
-          return (<li key={index} style={{ textDecoration: 'none', display: "inline-block", margin: "10px" }}><Nav key={index} dataKey={index} data={nav} /></li>);
+          return (<li key={index} style={{ textDecoration: 'none', display: "flex",alignContent:'center', margin: "10px 30px" }}><Nav key={index} dataKey={index} data={nav} /></li>);
         })}
-        <li style={{ color:'white', textDecoration: 'none', display: "inline-block", margin: "10px" }}><div>Search</div></li>
-        <li style={{ color:'white', textDecoration: 'none', display: "inline-block", margin: "10px" }}><div>Bag</div></li>
+        <li style={{ color:'white', textDecoration: 'none', display: "flex", alignContent:'center', margin: "10px 30px" }}><div>Search</div></li>
+        <li style={{ color:'white', textDecoration: 'none', display: "flex", alignContent:'center', margin: "10px 30px" }}><div>Bag</div></li>
       </ul>
       <Switch>
         <Route exact path="/" component={Home} />

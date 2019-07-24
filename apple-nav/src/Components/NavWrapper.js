@@ -1,9 +1,124 @@
 import React from 'react';
+import Nav from './Nav';
+import SubNavWrapper from './SubNavWrapper';
+import SubNavPage, {Home, Page404} from './SubNavPage';
+import { Route, Switch } from 'react-router-dom';
+//import { Home, Mac, Ipad, Iphone, Watch, TV, Music, Support, Page404 } from './Pages';
 
 
 export default function NavWrapper(props) {
-  return(
+  const subData = props.data;
+  return (
     <>
+      <ul >
+        {props.data.map((nav, i) => {
+          return (<li style={{ textDecoration: 'none', display: "inline-block", margin: "10px" }}><Nav key={i} data={nav} /></li>);
+        })}
+        <li style={{ textDecoration: 'none', display: "inline-block", margin: "10px" }}><div>Search</div></li>
+        <li style={{ textDecoration: 'none', display: "inline-block", margin: "10px" }}><div>Bag</div></li>
+      </ul>
+      <Switch>
+        <Route exact path="/Home" component={Home} />
+
+        <Route
+          exact
+          path='/Mac'
+          render={props => (
+            <SubNavWrapper {...props} data={subData[1]} parent='Mac' />
+          )}
+        />
+
+        <Route
+          path="/Mac/:navTitle"
+          render={props => (
+            <SubNavPage {...props} data={subData[1]} />
+          )}
+        />
+
+        <Route
+          exact
+          path='/Ipad'
+          render={props => (
+            <SubNavWrapper {...props} data={subData[2]} parent='Ipad' />
+          )}
+        />
+
+        <Route
+          path="/Ipad/:navTitle"
+          render={props => (
+            <SubNavPage {...props} data={subData[2]} />
+          )}
+        />
+
+        <Route
+          exact
+          path='/Iphone'
+          render={props => (
+            <SubNavWrapper {...props} data={subData[3]} parent='Iphone' />
+          )}
+        />
+
+        <Route
+          path="/Iphone/:navTitle"
+          render={props => (
+            <SubNavPage {...props} data={subData[3]} />
+          )}
+        />
+
+        <Route
+          exact
+          path='/Watch'
+          render={props => (
+            <SubNavWrapper {...props} data={subData[4]} parent='Watch' />
+          )}
+        />
+
+        <Route
+          path="/Watch/:navTitle"
+          render={props => (
+            <SubNavPage {...props} data={subData[4]} />
+          )}
+        />
+
+        <Route
+          exact
+          path='/TV'
+          render={props => (
+            <SubNavWrapper {...props} data={subData[5]} parent='TV' />
+          )}
+        />
+
+        <Route
+          path="/TV/:navTitle"
+          render={props => (
+            <SubNavPage {...props} data={subData[5]} />
+          )}
+        />
+
+        <Route
+          exact
+          path='/Music'
+          render={props => (
+            <SubNavWrapper {...props} data={subData[6]} parent='Music' />
+          )}
+        />
+
+        <Route
+          path="/Music/:navTitle"
+          render={props => (
+            <SubNavPage {...props} data={subData[6]} />
+          )}
+        />
+
+        <Route
+          exact
+          path='/Support'
+          render={props => (
+            <SubNavWrapper {...props} data={subData[7]} parent='Support' />
+          )}
+        />
+        <Route component={Page404} />
+      </Switch>
     </>
   );
 }

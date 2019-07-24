@@ -1,22 +1,20 @@
 import React from 'react';
 import Nav from './Nav';
 import SubNavWrapper from './SubNavWrapper';
-import SubNavPage, {Home, Page404} from './SubNavPage';
+import SubNavPage, {Home, Support, Page404} from './SubNavPage';
 import { Route, Switch } from 'react-router-dom';
-//import { Home, Mac, Ipad, Iphone, Watch, TV, Music, Support, Page404 } from './Pages';
 
 
 export default function NavWrapper(props) {
   const subData = props.data;
-  console.log("Testing: " + JSON.stringify(subData));
   return (
-    <>
-      <ul >
+    <div>
+      <ul style={{height:'44px', margin:'0',backgroundColor:'#313131'}}>
         {props.data.map((nav, index) => {
           return (<li key={index} style={{ textDecoration: 'none', display: "inline-block", margin: "10px" }}><Nav key={index} dataKey={index} data={nav} /></li>);
         })}
-        <li style={{ textDecoration: 'none', display: "inline-block", margin: "10px" }}><div>Search</div></li>
-        <li style={{ textDecoration: 'none', display: "inline-block", margin: "10px" }}><div>Bag</div></li>
+        <li style={{ color:'white', textDecoration: 'none', display: "inline-block", margin: "10px" }}><div>Search</div></li>
+        <li style={{ color:'white', textDecoration: 'none', display: "inline-block", margin: "10px" }}><div>Bag</div></li>
       </ul>
       <Switch>
         <Route exact path="/" component={Home} />
@@ -25,7 +23,7 @@ export default function NavWrapper(props) {
           exact
           path='/Mac/'
           render={props => (
-            <SubNavWrapper {...props} data={subData[1]} parent='Mac' />
+            <SubNavWrapper {...props} data={subData[1]} parent='Mac' dataKey={0} />
           )}
         />
 
@@ -33,7 +31,7 @@ export default function NavWrapper(props) {
           path="/Mac/:navTitle"
           render={props => (
             <>
-              <SubNavWrapper {...props} data={subData[1]} parent='Mac' />
+              <SubNavWrapper {...props} data={subData[1]} parent='Mac' dataKey={0}/>
               <SubNavPage {...props} data={subData[1]} />
             </>
           )}
@@ -43,7 +41,7 @@ export default function NavWrapper(props) {
           exact
           path='/Ipad'
           render={props => (
-            <SubNavWrapper {...props} data={subData[2]} parent='Ipad' />
+            <SubNavWrapper {...props} data={subData[2]} parent='Ipad' dataKey={1}/>
           )}
         />
 
@@ -51,7 +49,7 @@ export default function NavWrapper(props) {
           path="/Ipad/:navTitle"
           render={props => (
             <>
-              <SubNavWrapper {...props} data={subData[2]} parent='Ipad' />
+              <SubNavWrapper {...props} data={subData[2]} parent='Ipad' dataKey={1}/>
               <SubNavPage {...props} data={subData[2]} />
             </>
           )}
@@ -61,7 +59,7 @@ export default function NavWrapper(props) {
           exact
           path='/Iphone'
           render={props => (
-            <SubNavWrapper {...props} data={subData[3]} parent='Iphone' />
+            <SubNavWrapper {...props} data={subData[3]} parent='Iphone' dataKey={2}/>
           )}
         />
 
@@ -69,7 +67,7 @@ export default function NavWrapper(props) {
           path="/Iphone/:navTitle"
           render={props => (
             <>
-            <SubNavWrapper {...props} data={subData[3]} parent='Iphone' />
+            <SubNavWrapper {...props} data={subData[3]} parent='Iphone' dataKey={2}/>
             <SubNavPage {...props} data={subData[3]} />
             </>
           )}
@@ -79,7 +77,7 @@ export default function NavWrapper(props) {
           exact
           path='/Watch'
           render={props => (
-            <SubNavWrapper {...props} data={subData[4]} parent='Watch' />
+            <SubNavWrapper {...props} data={subData[4]} parent='Watch' dataKey={3}/>
           )}
         />
 
@@ -87,7 +85,7 @@ export default function NavWrapper(props) {
           path="/Watch/:navTitle"
           render={props => (
             <>
-            <SubNavWrapper {...props} data={subData[4]} parent='Watch' />
+            <SubNavWrapper {...props} data={subData[4]} parent='Watch' dataKey={3}/>
             <SubNavPage {...props} data={subData[4]} />
             </>
           )}
@@ -97,7 +95,7 @@ export default function NavWrapper(props) {
           exact
           path='/TV'
           render={props => (
-            <SubNavWrapper {...props} data={subData[5]} parent='TV' />
+            <SubNavWrapper {...props} data={subData[5]} parent='TV' dataKey={4}/>
           )}
         />
 
@@ -105,7 +103,7 @@ export default function NavWrapper(props) {
           path="/TV/:navTitle"
           render={props => (
             <>
-            <SubNavWrapper {...props} data={subData[5]} parent='TV' />
+            <SubNavWrapper {...props} data={subData[5]} parent='TV' dataKey={4}/>
             <SubNavPage {...props} data={subData[5]} />
             </>
           )}
@@ -115,7 +113,7 @@ export default function NavWrapper(props) {
           exact
           path='/Music'
           render={props => (
-            <SubNavWrapper {...props} data={subData[6]} parent='Music' />
+            <SubNavWrapper {...props} data={subData[6]} parent='Music' dataKey={5}/>
           )}
         />
 
@@ -123,22 +121,17 @@ export default function NavWrapper(props) {
           path="/Music/:navTitle"
           render={props => (
             <>
-            <SubNavWrapper {...props} data={subData[6]} parent='Music' />
+            <SubNavWrapper {...props} data={subData[6]} parent='Music' dataKey={5}/>
             <SubNavPage {...props} data={subData[6]} />
             </>
             
           )}
         />
 
-        <Route
-          exact
-          path='/Support'
-          render={props => (
-            <SubNavWrapper {...props} data={subData[7]} parent='Support' />
-          )}
-        />
+        <Route exact path="/Support" component={Support} />
+
         <Route component={Page404} />
       </Switch>
-    </>
+    </div>
   );
 }

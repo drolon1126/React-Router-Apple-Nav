@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function SubNavPage (props) {
-  console.log(props);
   const subNav = props.data.subLinks.find(
     subNav => subNav.model.replace(/ /g,"_") === props.match.params.navTitle
   );
@@ -14,6 +13,10 @@ export default function SubNavPage (props) {
 
 export function Home() {
   return <h1>Home Page</h1>;
+}
+
+export function Support() {
+  return <h1>Support Page</h1>;
 }
 
 export function Page404() {
